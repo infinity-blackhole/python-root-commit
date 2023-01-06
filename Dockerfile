@@ -1,4 +1,4 @@
-FROM python:3.9.13-slim-bullseye AS base
+FROM python:3.10.9-slim-bullseye AS base
 
 # Create the app directory
 WORKDIR /usr/src/app
