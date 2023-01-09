@@ -39,6 +39,8 @@
               packages = [
                 (pkgs.python3.withPackages (ps: with ps; [
                   pip
+                  isort
+                  black
                 ]))
               ];
             }
