@@ -34,9 +34,11 @@
                 nixpkgs-fmt.enable = true;
                 statix.enable = true;
                 deadnix.enable = true;
+                hadolint.enable = true;
               };
               packages = [
                 pkgs.nixpkgs-fmt
+                pkgs.docker
               ];
             }
             {
