@@ -20,6 +20,15 @@
         default = pkgs.poetry2nix.mkPoetryApplication {
           projectDir = self;
         };
+        docker = pkgs.dockerTools.buildLayeredImage {
+          name = "python-template-project";
+          tag = "latest";
+          created = "now";
+          config = {
+            Entrypoint = [ "${self.packages.${system}.default.dependencyEnv}/bin/python" ];
+            Cmd = [ "-m" "python_template_project.app" ];
+          };
+        };
       }
     );
 
