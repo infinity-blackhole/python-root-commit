@@ -14,15 +14,21 @@
     };
   };
 
-  outputs = { nixpkgs, devenv, ... }@inputs: {
-    devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+  outputs = { self, nixpkgs, devenv, ... }@inputs: {
+    packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
+      let pkgs = import nixpkgs { inherit system; }; in {
+        default = pkgs.poetry2nix.mkPoetryEnv {
+          projectDir = self;
+          python = pkgs.python3;
+          overrides = [
+            pkgs.poetry2nix.defaultPoetryOverrides
+          ];
         };
-      in
-      {
+      }
+    );
+
+    devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
+      let pkgs = import nixpkgs { inherit system; }; in {
         default = devenv.lib.mkShell {
           inherit inputs pkgs;
           modules = [
