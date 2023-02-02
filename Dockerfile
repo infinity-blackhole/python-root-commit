@@ -1,4 +1,7 @@
-FROM python:3.10.9-slim-bullseye AS base
+ARG PYTHON_VERSION=3.10.9
+ARG POETRY_VERSION==1.3.1
+
+FROM python:${PYTHON_VERSION}-slim-bullseye AS base
 
 # Create the app directory
 WORKDIR /usr/src/app
@@ -6,9 +9,8 @@ WORKDIR /usr/src/app
 FROM base AS deps
 
 # Install global packages
-COPY requirements.txt ./
 RUN --mount=type=cache,target=/home/root/.cache/pip \
-  pip install -r requirements.txt
+  pip install "poetry==${POETRY_VERSION}"
 
 # Install dependencies
 COPY pyproject.toml poetry.lock ./

@@ -17,12 +17,8 @@
   outputs = { self, nixpkgs, devenv, ... }@inputs: {
     packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
       let pkgs = import nixpkgs { inherit system; }; in {
-        default = pkgs.poetry2nix.mkPoetryEnv {
+        default = pkgs.poetry2nix.mkPoetryApplication {
           projectDir = self;
-          python = pkgs.python3;
-          overrides = [
-            pkgs.poetry2nix.defaultPoetryOverrides
-          ];
         };
       }
     );
