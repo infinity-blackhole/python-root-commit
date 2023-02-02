@@ -14,7 +14,8 @@
     "ms-python.vscode-pylance",
     "ms-python.python",
     "hbenl.vscode-test-explorer",
-    "SonarSource.sonarlint-vscode"
+    "SonarSource.sonarlint-vscode",
+    "bungcip.better-toml"
   ],
   "updateContentCommand": "direnv allow"
 }
