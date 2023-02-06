@@ -7,15 +7,19 @@
     "ghcr.io/devcontainers/features/docker-in-docker:1": {},
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
-  "extensions": [
-    "jnoortheen.nix-ide",
-    "mkhl.direnv",
-    "yzhang.markdown-all-in-one",
-    "ms-python.vscode-pylance",
-    "ms-python.python",
-    "hbenl.vscode-test-explorer",
-    "SonarSource.sonarlint-vscode",
-    "bungcip.better-toml"
-  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide",
+        "mkhl.direnv",
+        "yzhang.markdown-all-in-one",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "hbenl.vscode-test-explorer",
+        "SonarSource.sonarlint-vscode",
+        "bungcip.better-toml"
+      ]
+    }
+  },
   "updateContentCommand": "direnv allow"
 }
