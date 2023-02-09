@@ -14,24 +14,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, devenv, ... }@inputs: {
-    packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
-      let pkgs = import nixpkgs { inherit system; }; in {
-        default = pkgs.poetry2nix.mkPoetryApplication {
-          projectDir = self;
-        };
-        docker = pkgs.dockerTools.buildLayeredImage {
-          name = "python-template-project";
-          tag = "latest";
-          created = "now";
-          config = {
-            Entrypoint = [ "${self.packages.${system}.default.dependencyEnv}/bin/python" ];
-            Cmd = [ "-m" "python_template_project.app" ];
-          };
-        };
-      }
-    );
+  nixConfig = {
+    extra-public-keys = [
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+    extra-substituters = [
+      "https://devenv.cachix.org"
+    ];
+  };
 
+  outputs = { nixpkgs, devenv, ... }@inputs: {
     devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
       let pkgs = import nixpkgs { inherit system; }; in {
         default = devenv.lib.mkShell {
@@ -58,12 +50,16 @@
                 isort.enable = true;
               };
               packages = [
-                pkgs.poetry
                 (pkgs.python3.withPackages (ps: with ps; [
                   pip
+                  pip-tools
                   isort
                   black
+                  hatchling
                 ]))
+              ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+                # TODO: https://github.com/NixOS/nixpkgs/issues/209358
+                pkgs.hatch
               ];
             }
           ];

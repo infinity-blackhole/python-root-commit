@@ -1,30 +1,21 @@
-ARG PYTHON_VERSION=3.10.9
-ARG POETRY_VERSION==1.3.1
+FROM python:3.10-slim-bullseye AS base
 
-FROM python:${PYTHON_VERSION}-slim-bullseye AS base
-
-# Create the app directory
+# Change working directory
 WORKDIR /usr/src/app
-
-FROM base AS deps
 
 # Install global packages
 RUN --mount=type=cache,target=/home/root/.cache/pip \
-  pip install "poetry==${POETRY_VERSION}"
+  --mount=type=bind,source=requirements.txt,target=requirements.txt \
+  pip install -r requirements.txt
 
-# Install dependencies
-COPY pyproject.toml poetry.lock ./
-RUN --mount=type=cache,target=/home/root/.cache/pypoetry \
-  poetry install --no-dev
+FROM base
 
-FROM deps AS app
-
-# Copy sources
-COPY python_template_project python_template_project
-COPY README.md ./
-
-# Overrider entrypoint to current virtual environment
-ENTRYPOINT [ "poetry", "run" ]
+# Install application
+RUN --mount=type=cache,target=/home/root/.cache/pip \
+  --mount=type=bind,source=python_template_project,target=python_template_project \
+  --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+  --mount=type=bind,source=README.md,target=README.md \
+  pip install .
 
 # Run application
 CMD ["python", "-m", "python_template_project.app" ]
