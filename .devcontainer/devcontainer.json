@@ -17,7 +17,8 @@
         "ms-python.python",
         "hbenl.vscode-test-explorer",
         "SonarSource.sonarlint-vscode",
-        "bungcip.better-toml"
+        "bungcip.better-toml",
+        "tamasfe.even-better-toml"
       ]
     }
   },
