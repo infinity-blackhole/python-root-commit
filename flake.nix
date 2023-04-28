@@ -46,11 +46,7 @@
                 isort.enable = true;
               };
               packages = [
-                (pkgs.python3.withPackages (ps: with ps; [
-                  isort
-                  black
-                  hatchling
-                ]))
+                pkgs.python3
               ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
                 # TODO: https://github.com/NixOS/nixpkgs/issues/209358
                 pkgs.hatch
