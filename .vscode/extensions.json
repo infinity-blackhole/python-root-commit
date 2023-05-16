@@ -9,6 +9,7 @@
     "sonarsource.sonarlint-vscode",
     "bungcip.better-toml",
     "tamasfe.even-better-toml",
-    "ms-vscode.makefile-tools"
+    "ms-vscode.makefile-tools",
+    "esbenp.prettier-vscode"
   ],
 }
