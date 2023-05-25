@@ -4,11 +4,17 @@
     "ghcr.io/devcontainers/features/nix:1": {
       "extraNixConfig": "experimental-features = nix-command flakes,accept-flake-config = true,trusted-users = root vscode"
     },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.10"
+    },
+    "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
+      "package": "hatch"
     },
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },

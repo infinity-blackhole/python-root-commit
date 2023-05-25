@@ -45,12 +45,6 @@
                 black.enable = true;
                 isort.enable = true;
               };
-              packages = [
-                pkgs.python3
-              ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-                # TODO: https://github.com/NixOS/nixpkgs/issues/209358
-                pkgs.hatch
-              ];
             }
           ];
         };
