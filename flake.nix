@@ -20,7 +20,21 @@
 
   outputs = { nixpkgs, devenv, ... }@inputs: {
     devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
-      let pkgs = import nixpkgs { inherit system; }; in {
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        python = pkgs.symlinkJoin {
+          name = "${pkgs.python3.name}-merged";
+          paths = [
+            pkgs.python3
+            pkgs.stdenv.cc.cc.lib
+            pkgs.zlib
+          ];
+        };
+      in
+      {
         default = devenv.lib.mkShell {
           inherit inputs pkgs;
           modules = [
@@ -38,6 +52,7 @@
               packages = [
                 pkgs.nixpkgs-fmt
                 pkgs.docker
+                pkgs.nodejs
               ];
             }
             {
@@ -45,6 +60,10 @@
                 black.enable = true;
                 isort.enable = true;
               };
+              packages = [
+                pkgs.hatch
+                python
+              ];
             }
           ];
         };
