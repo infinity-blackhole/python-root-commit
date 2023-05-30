@@ -38,6 +38,7 @@
               packages = [
                 pkgs.nixpkgs-fmt
                 pkgs.docker
+                pkgs.nodejs
               ];
             }
             {
@@ -45,6 +46,10 @@
                 black.enable = true;
                 isort.enable = true;
               };
+              packages = [
+                pkgs.hatch
+                pkgs.python3
+              ];
             }
           ];
         };
