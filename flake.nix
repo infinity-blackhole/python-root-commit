@@ -27,11 +27,17 @@
         };
         python = pkgs.symlinkJoin {
           name = "${pkgs.python3.name}-merged";
-          paths = [
-            pkgs.python3
-            pkgs.stdenv.cc.cc.lib
-            pkgs.zlib
-          ];
+          paths = [ pkgs.python39 ];
+          postBuild = ''
+            for f in $(find $out/bin/ $out/libexec/ -type l -executable); do
+              wrapProgram "$f" \
+                --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath [
+                  pkgs.stdenv.cc.cc.lib
+                  pkgs.hdf5
+                  pkgs.zlib
+                ]}"
+            done
+          '';
         };
       in
       {
