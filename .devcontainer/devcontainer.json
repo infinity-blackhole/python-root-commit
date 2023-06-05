@@ -7,6 +7,7 @@
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
     },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
   "updateContentCommand": "nix develop --build --impure",
