@@ -34,6 +34,7 @@
                 statix.enable = true;
                 deadnix.enable = true;
                 hadolint.enable = true;
+                prettier.enable = true;
               };
               packages = [
                 pkgs.nixpkgs-fmt

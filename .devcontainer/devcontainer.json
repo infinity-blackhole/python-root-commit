@@ -11,9 +11,7 @@
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
   "updateContentCommand": "nix develop --build --impure",
-  "mounts": [
-    "source=nix,target=/nix,type=volume"
-  ],
+  "mounts": ["source=nix,target=/nix,type=volume"],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -33,9 +31,7 @@
         "python.linting.enabled": true,
         "python.linting.mypyEnabled": true,
         "python.testing.pytestEnabled": true,
-        "python.testing.pytestArgs": [
-          "python_template_project"
-        ]
+        "python.testing.pytestArgs": ["python_template_project"]
       }
     }
   }
