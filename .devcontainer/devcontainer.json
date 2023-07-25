@@ -11,5 +11,32 @@
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
   "updateContentCommand": "nix develop --build --impure",
-  "mounts": ["source=nix,target=/nix,type=volume"]
+  "mounts": [
+    "source=nix,target=/nix,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide",
+        "mkhl.direnv",
+        "yzhang.markdown-all-in-one",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "hbenl.vscode-test-explorer",
+        "sonarsource.sonarlint-vscode",
+        "bungcip.better-toml",
+        "tamasfe.even-better-toml",
+        "ms-vscode.makefile-tools",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "python.linting.enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+          "python_template_project"
+        ]
+      }
+    }
+  }
 }
