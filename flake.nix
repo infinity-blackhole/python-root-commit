@@ -48,7 +48,7 @@
                 isort.enable = true;
               };
               packages = [
-                pkgs.hatch
+                pkgs.pdm
                 pkgs.python3
               ];
             }

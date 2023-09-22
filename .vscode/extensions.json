@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "jnoortheen.nix-ide",
+    "mkhl.direnv",
+    "yzhang.markdown-all-in-one",
+    "ms-python.vscode-pylance",
+    "ms-python.black-formatter",
+    "ms-python.mypy-type-checker",
+    "ms-python.isort",
+    "ms-python.python",
+    "hbenl.vscode-test-explorer",
+    "sonarsource.sonarlint-vscode",
+    "bungcip.better-toml",
+    "tamasfe.even-better-toml",
+    "ms-vscode.makefile-tools",
+    "esbenp.prettier-vscode"
+  ]
+}

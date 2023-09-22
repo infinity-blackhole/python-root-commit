@@ -1,17 +1,16 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["flit_core>=3.2,<4"]
+build-backend = "flit_core.buildapi"
 
 [project]
 name = "python-template-project"
 description = 'Python template project'
 readme = "README.md"
-requires-python = ">=3.8"
-license = "MIT"
-keywords = []
 authors = [
-  { name = "William Phetsinorath", email = "william.phtesinorath@shikanime.studio" },
+  { name = "William Phetsinorath", email = "william.phetsinorath@shikanime.studio" },
 ]
+requires-python = ">=3.10"
+license = { text = "MIT" }
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -34,10 +33,7 @@ Source = "https://github.com/infinity-blackhole/python-root-commit"
 path = "python_template_project/__about__.py"
 
 [tool.hatch.envs.default]
-dependencies = [
-  "pytest",
-  "pytest-cov",
-]
+dependencies = ["pytest", "pytest-cov"]
 
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=python_template_project --cov=tests {args}"
@@ -49,16 +45,10 @@ python = ["38", "39", "310", "311"]
 [tool.coverage.run]
 branch = true
 parallel = true
-omit = [
-  "python_template_project/__about__.py",
-]
+omit = ["python_template_project/__about__.py"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 
 [tool.isort]
 profile = "black"

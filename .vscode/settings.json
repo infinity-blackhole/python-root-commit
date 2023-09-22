@@ -1,0 +1,4 @@
+{
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["python_template_project"]
+}
